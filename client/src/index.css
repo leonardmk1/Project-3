@@ -1,14 +1,59 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+.form {
+  display: grid;
+}
+.label {
+  font-size: 1.5rem;
+  margin-bottom: 0.2rem;
+  margin-right: 1rem;
+}
+.input {
+  font-size: 1rem;
+  padding: 0.5rem 2rem;
+  line-height: 1.5rem;
+  border-radius: 20px;
+  border: 1px solid #dddddd;
+  margin-bottom: 1rem;
+}
+.button {
+  border-radius: 25px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+input[type="radio"] {
+  display: none;
+}
+
+.star {
+  cursor: pointer;
+  transition: color 200ms;
+}
+.result-card {
+  padding: 2rem 4rem;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+  margin-bottom: 2rem;
+  background-color: white;
+}
+.review-btn {
+  border-radius: 20px;
+}
+.card--image {
+  border-radius: 2%;
+}
+.trailer{
+  border-radius: 20px;
+}
+.title{
+  font-weight: bold !important;
+}
+
+
+@media (min-width: 786px) {
+  .form {
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+  }
+  .input {
+    margin-bottom: 0px;
+  }
 }

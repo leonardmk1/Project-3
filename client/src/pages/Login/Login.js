@@ -50,7 +50,7 @@ class Login extends Component {
       <div className='Login'>
         <div className='row'>
           <div className='col'>
-            <h1>Login</h1>
+            <h1 className="mt-3">Login</h1>
           </div>
         </div>
         {this.state.error &&

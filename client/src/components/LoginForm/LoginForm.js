@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { MDBBtn } from "mdbreact";
 
 import Octicon, { Mail, Key } from '@githubprimer/octicons-react';
 
@@ -61,7 +62,7 @@ class LoginForm extends Component {
                 />
               </div>
 
-              <button className='btn btn-primary' type='submit'>Login</button>
+              <MDBBtn rounded color="blue" type='submit'>Login</MDBBtn>
             </form>
           </div>
         </div>

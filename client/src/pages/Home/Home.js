@@ -1,27 +1,22 @@
-import React, { Component } from 'react';
-
-import logo from './logo.svg';
+import React, { Component } from "react";
+import Card from "../../components/Card/Card";
+import SearchContent from "../SearchContent/SearchContent";
+import { MDBJumbotron, MDBContainer } from "mdbreact";
 
 class HomePage extends Component {
   render() {
     return (
-      <div className='Home'>
-        <div className='row'>
-          <div className='col'>
-            <img src={logo} className='App-logo' alt='logo' />
-            <p>
-              Edit <code>src/pages/Home.js</code> and save to reload.
-            </p>
-            <a
-              className='App-link'
-              href='https://reactjs.org'
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-          </div>
-        </div>
+      <div className="Home">
+        <Card />
+        <MDBJumbotron fluid className="my-3 text-center shadow-md">
+          <MDBContainer>
+            <h3 className="display-5 mb-4">
+              <strong>Movie Stream</strong> allows for you to search{" "}
+              <strong>Movies, TV shows, and more!</strong>
+            </h3>
+            <SearchContent />
+          </MDBContainer>
+        </MDBJumbotron>
       </div>
     );
   }
