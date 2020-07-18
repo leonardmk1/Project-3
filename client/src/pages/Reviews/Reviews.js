@@ -12,6 +12,15 @@ import {
 } from "mdbreact";
 import { Link } from "react-router-dom";
 import "./Reviews.css";
+import API from "../../lib/API";
+
+
+API.Reviews.post(title, movieId, rating, review, userId)
+.then(function(res){
+  console.log(res);
+}
+
+
 
 class TabsDefault extends Component {
   state = {
@@ -42,7 +51,7 @@ class TabsDefault extends Component {
                 role="tab"
                 className="tab"
               >
-                All Users
+                All Users Reviews
               </Link>
             </MDBNavItem>
             <MDBNavItem>

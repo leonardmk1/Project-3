@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
-import {
-  MDBBtn,
-  MDBRow,
-  MDBCol,
-  MDBContainer,
-  MDBRating,
-} from "mdbreact";
+import {  MDBRow, MDBCol, MDBContainer, MDBRating } from "mdbreact";
 import API from "../../lib/API";
+import RatingModal from "../../components/RatingModal/RatingModal"
 
 export default function Details() {
   const [media, setMedia] = useState({});
   const [whereToWatch, setWhereToWatch] = useState([]);
+  const [criticalReview, setCriticalReview] = useState([]);
+  const [omdbDetails, setOMDBDetails] = useState([]);
   console.log(window.location.pathname.substr(9));
   async function getTheMovie() {
     const res = await API.Media.getMovie(window.location.pathname.substr(9))
@@ -19,11 +16,26 @@ export default function Details() {
         API.Media.getUttey(response.data[0].title)
           .then((response) => {
             console.log(response);
-            setWhereToWatch(
-              response.data.results[0].locations
-            );
+            setWhereToWatch(response.data.results[0].locations);
           })
           .catch((error) => {
+            console.log(error);
+          });
+        API.Media.getCriticalReview(response.data[0].title)
+            .then((nytResponse) => {
+            console.log(nytResponse);
+            setCriticalReview(nytResponse.data.results.filter(movie => movie.display_title === response.data[0].title && movie.opening_date.substr(0,3) === response.data[0].releaseDate.substr(0,3)))
+        })
+        .catch((error) => {
+            console.log(error);
+          });
+
+          API.Media.getOMDBDetails(response.data[0].title)
+            .then((omdbResponse) => {
+            console.log(omdbResponse);
+            setOMDBDetails(omdbResponse.data.data)
+        })
+        .catch((error) => {
             console.log(error);
           });
       })
@@ -34,16 +46,6 @@ export default function Details() {
   useEffect(() => {
     getTheMovie();
   }, []);
-
-    fetch(
-      `https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=${media.title}&api-key=xo5NLGLQ37HObAYWKVopO5oXMMhZ4SVW`
-    )
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-
-  fetch(`http://www.omdbapi.com/?t=${media.title}&apikey=434727b0`)
-    .then((response) => response.json())
-    .then((data) => console.log(data));
 
   const [basic] = useState([
     {
@@ -85,21 +87,32 @@ export default function Details() {
                 {media.overview}
               </p>
             </div>
+            <MDBRow>
+            <MDBCol>
             <p>
               <h5>Release Date</h5>
               <p>{media.releaseDate}</p>
             </p>
+            </MDBCol>
+            <MDBCol>
+            <p>
+              <h5>Details</h5>
+                {/* {omdbDetails.Actors} */}
+            </p>
+            </MDBCol>
+            </MDBRow>
+            <hr></hr>
             <div className="text-center">
-              {/* <MDBBtn outline color="blue" className="trailer" onClick={``}>
-                Watch Trailer
-              </MDBBtn> */}
-              <hr></hr>
               <p>
                 <h5>Streaming On</h5>
                 {whereToWatch.map((service) => (
-                  <a href={service.url} target="blank"><img src={service.icon}
-                  alt={service.display_name}
-                  style={{margin:"15px"}}/></a>
+                  <a href={service.url} target="blank">
+                    <img
+                      src={service.display_name  === "FandangoMoviesIVAUS" ? "http://lexiconlabs.io/wp-content/uploads/2016/02/fandango_logo-768x384.jpg" : service.icon}
+                      alt={service.display_name}
+                      style={{ margin: "15px", width: "92px" }}
+                    />
+                  </a>
                 ))}
               </p>
             </div>
@@ -107,7 +120,17 @@ export default function Details() {
           <MDBCol>
             <div>
               <h5>Movie Stream Rating</h5>
-              <MDBRating data={basic} style={{marginLeft:"16px", marginTop:"5px"}} />
+              <hr></hr>
+              <MDBRating
+                data={basic}
+                style={{ marginLeft: "16px", marginTop: "5px" }}
+              />
+              <hr></hr>
+              <br></br>
+              <RatingModal 
+              title = {media.title}
+              id = {media.id}
+              />
             </div>
           </MDBCol>
         </MDBRow>
@@ -115,13 +138,15 @@ export default function Details() {
         <div>
           <hr></hr>
           <p>
-            <h2 className="text-left">Critics Review</h2>
-            <p className="text-left">{media.overview}</p>
+            <h2 className="text-left">NY Times Movie Review</h2>
+            {criticalReview.map((review) => (
+              <p>{review.summary_short}...<a href={review.link.url} target="blank">Read more</a></p>
+            ))}
           </p>
           <hr></hr>
           <p>
             <h2 className="text-left">User Reviews</h2>
-            <p className="text-left">{media.overview}</p>
+            {/* <p className="text-left">{media.overview}</p> */}
           </p>
         </div>
       </div>

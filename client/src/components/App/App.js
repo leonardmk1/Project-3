@@ -11,9 +11,8 @@ import Login from "../../pages/Login/Login";
 import Register from "../../pages/Register/Register";
 import Secret from "../../pages/Secret/Secret";
 import NotFound from "../../pages/NotFound/NotFound";
-import News from "../../pages/News/News";
 import Details from "../../pages/Details/Details";
-
+import Rating from "../Rating/Rating";
 import Reviews from "../../pages/Reviews/Reviews";
 import Profile from "../../pages/Profile/Profile";
 import TopRatedMovies from "../../pages/TopRatedMovies /TopRatedMovies";
@@ -73,10 +72,9 @@ class App extends Component {
               <PrivateRoute exact path="/" component={Home} />
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
-              <PrivateRoute path="/secret" component={Secret} />
-              <PrivateRoute exact path="/News" component={News} />
               <PrivateRoute exact path="/Profile" component={Profile} />
               <PrivateRoute path="/Details" component={Details} />
+              <PrivateRoute path="/Rating" component={Rating} />
               <PrivateRoute exact path="/Reviews" component={Reviews} />
               <PrivateRoute exact path="/TopRatedMovies" component={TopRatedMovies} />
               <PrivateRoute

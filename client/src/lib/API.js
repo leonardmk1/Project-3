@@ -52,8 +52,55 @@ export default {
           term: title,
           country: "us",
         },
-      })
-        
+      });
+    },
+
+    getCriticalReview: function (title) {
+      console.log(title);
+      return axios({
+        method: "GET",
+        url: `https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=${title}&api-key=xo5NLGLQ37HObAYWKVopO5oXMMhZ4SVW`,
+      });
+    },
+
+    getOMDBDetails: function (title) {
+      console.log(title);
+      return axios({
+        method: "GET",
+        url: `http://www.omdbapi.com/?t=${title}&apikey=434727b0`,
+      });
+    },
+  },
+
+  Reviews: {
+    create: function (title, movieId, rating, review, userId) {
+      return axios.post("/api/reviews", {
+        title,
+        movieId,
+        rating,
+        review,
+        userId,
+      });
+    },
+
+    getAll: function () {
+      return axios.get("/api/reviews");
+    },
+
+    getReview: function (id) {
+      return axios.get("/api/reviews/" + id);
+    },
+
+    deleteReview: function (id) {
+      return axios.delete("/api/reviews/" + id);
+    },
+
+    saveReview: function (reviewData) {
+      return axios.post("/api/reviews", reviewData);
+    },
+
+    updateReview: function (id) {
+      return axios.put("/api/reviews/" + id);
     },
   },
 

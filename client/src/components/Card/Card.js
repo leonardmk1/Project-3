@@ -13,6 +13,7 @@ import {
   MDBCol,
   MDBBadge,
   MDBRow,
+  MDBIcon,
 } from "mdbreact";
 
 const CardExample = () => {
@@ -36,12 +37,6 @@ const CardExample = () => {
             <MDBListGroupItem href="#" hover>
               Porta ac consectetur ac
             </MDBListGroupItem>
-            <MDBListGroupItem href="#" hover>
-              Dapibus ac facilisis in
-            </MDBListGroupItem>
-            <MDBListGroupItem href="#" hover>
-              Dapibus ac facilisis in
-            </MDBListGroupItem>
           </MDBCardBody>
         </MDBCard>
       </MDBCol>
@@ -52,6 +47,32 @@ const CardExample = () => {
             <MDBCardTitle className="text-center">
               Top Rated TV Shows
             </MDBCardTitle>
+            <MDBListGroupItem className="text-left" href="#" hover>
+              Dapibus ac facilisis in
+              <MDBBadge className="ml-5 badge">
+                <MDBIcon icon="star"></MDBIcon>
+              </MDBBadge>
+            </MDBListGroupItem>
+            <MDBListGroupItem className="text-left" href="#" hover>
+            Morbi leo risus
+              <MDBBadge className="ml-5 badge">
+                <MDBIcon icon="star"></MDBIcon>
+              </MDBBadge>
+            </MDBListGroupItem>
+            <MDBListGroupItem className="text-left" href="#" hover>
+              Dapibus ac facilisis in
+              <MDBBadge className="ml-5 badge">
+                <MDBIcon icon="star"></MDBIcon>
+              </MDBBadge>
+            </MDBListGroupItem>
+          </MDBCardBody>
+        </MDBCard>
+      </MDBCol>
+
+      <MDBCol>
+        <MDBCard className="shadow-md" style={{ width: "21rem", marginTop: "25px" }}>
+          <MDBCardBody>
+            <MDBCardTitle className="text-center">Trending</MDBCardTitle>
             <MDBListGroupItem href="#" hover>
               Dapibus ac facilisis in
               <MDBBadge className="ml-5" color="primary" pill>
@@ -64,26 +85,6 @@ const CardExample = () => {
             <MDBListGroupItem href="#" hover>
               Porta ac consectetur ac
             </MDBListGroupItem>
-            <MDBListGroupItem href="#" hover>
-              Dapibus ac facilisis in
-            </MDBListGroupItem>
-            <MDBListGroupItem href="#" hover>
-              Dapibus ac facilisis in
-            </MDBListGroupItem>
-          </MDBCardBody>
-        </MDBCard>
-      </MDBCol>
-
-      <MDBCol>
-        <MDBCard className="shadow-md" style={{ width: "21rem", marginTop: "25px" }}>
-          <MDBCardBody>
-            <MDBCardTitle className="text-center">Reviews</MDBCardTitle>
-            <MDBCardText>
-              Get movie reviews. Can filter to only return Critics' Picks.
-              Supports ordering results by-title, by-publication-date, or
-              by-opening-date. Use offset to paginate thru results, 20 at a
-              time.
-            </MDBCardText>
           </MDBCardBody>
         </MDBCard>
       </MDBCol>

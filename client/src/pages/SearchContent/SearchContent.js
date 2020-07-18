@@ -81,9 +81,10 @@ export default function SearchContent() {
                 <MDBCol>
                   <div className="card--content">
                     <h3 className="card--title">{content.title ? content.title : content.name}</h3>
-                    <p>
+                    <br></br>
+                    {/* <p>
                       <small>Release Date {content.release_date ? content.release_date : content.first_air_date}</small>
-                    </p>
+                    </p> */}
                     <p className="card--desc">{content.overview}</p>
                   </div>
                   <MDBBtn color="blue" onClick={() => {storeContentInDatabase(content.title, content.name, content.poster_path, content.release_date, content.first_air_date, content.overview, content.id )}}>

@@ -19,7 +19,9 @@
     "nodemon": "^1.18.10"
   },
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^5.13.1",
     "dotenv": "^8.2.0",
-    "mongoose": "^5.9.22"
+    "mongoose": "^5.9.22",
+    "react-icons": "^3.10.0"
   }
 }
