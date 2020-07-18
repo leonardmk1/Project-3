@@ -17,6 +17,7 @@ const ReviewsSchema = new Schema({
   review: {
     type: String,
   },
+  date: { type: Date},
 });
 
 let Reviews = mongoose.model("Reviews", ReviewsSchema);

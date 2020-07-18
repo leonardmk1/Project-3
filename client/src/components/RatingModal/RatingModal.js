@@ -27,6 +27,10 @@ class RatingModal extends Component {
     this.setState({ modal: !this.state.modal });
   };
 
+  setRating = (rating) => {
+    this.setState({rating:rating})
+  }
+
   handleSubmit = (title, movieId, rating, review, userId) => {
     API.Reviews.create(title, movieId, rating, review, userId).then(function (
       res
@@ -34,7 +38,6 @@ class RatingModal extends Component {
       console.log(res);
     });
   };
-  onChange={(e) => setState(this.state.modal)}
 
   render() {
     const { user } = this.context;
@@ -47,11 +50,11 @@ class RatingModal extends Component {
         <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
           <MDBModalHeader toggle={this.toggle}>Add Your Review</MDBModalHeader>
           <MDBModalBody>
-            <Rating />
+            <Rating rating={this.state.rating} setRating={this.setRating}/>
           </MDBModalBody>
           <div className="m-5">
             {" "}
-            <MDBInput type="textarea" label="Write a Review" />
+            <MDBInput type="textarea" label="Write a Review" onChange={(e) => this.setState({ review: e.target.value })}/>
           </div>
           <MDBModalFooter>
             <MDBBtn outline color="primary" onClick={this.toggle}>
@@ -62,6 +65,7 @@ class RatingModal extends Component {
               color="primary"
               onClick={() => {
                 this.handleSubmit(this.props.title, this.props.id, this.state.rating, this.state.review, user._id);
+                window.location.reload();
               }}
             >
               Save changes

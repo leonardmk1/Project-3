@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from "react";
-import {  MDBRow, MDBCol, MDBContainer, MDBRating } from "mdbreact";
+import {
+  MDBRow,
+  MDBCol,
+  MDBContainer,
+  MDBRating,
+  MDBCard,
+  MDBCardBody,
+  MDBCardHeader,
+  MDBCardText,
+} from "mdbreact";
 import API from "../../lib/API";
-import RatingModal from "../../components/RatingModal/RatingModal"
+import RatingModal from "../../components/RatingModal/RatingModal";
 
 export default function Details() {
   const [media, setMedia] = useState({});
   const [whereToWatch, setWhereToWatch] = useState([]);
   const [criticalReview, setCriticalReview] = useState([]);
-  const [omdbDetails, setOMDBDetails] = useState([]);
-  console.log(window.location.pathname.substr(9));
+  const [omdbDetails, setOMDBDetails] = useState({});
+  const [userReviews, setUserReviews] = useState([]);
+  // console.log(window.location.pathname.substr(9));
   async function getTheMovie() {
     const res = await API.Media.getMovie(window.location.pathname.substr(9))
       .then((response) => {
@@ -22,22 +32,35 @@ export default function Details() {
             console.log(error);
           });
         API.Media.getCriticalReview(response.data[0].title)
-            .then((nytResponse) => {
+          .then((nytResponse) => {
             console.log(nytResponse);
-            setCriticalReview(nytResponse.data.results.filter(movie => movie.display_title === response.data[0].title && movie.opening_date.substr(0,3) === response.data[0].releaseDate.substr(0,3)))
-        })
-        .catch((error) => {
+            setCriticalReview(
+              nytResponse.data.results.filter(
+                (movie) =>
+                  movie.display_title === response.data[0].title &&
+                  movie.opening_date.substr(0, 3) ===
+                    response.data[0].releaseDate.substr(0, 3)
+              )
+            );
+          })
+          .catch((error) => {
             console.log(error);
           });
 
-          API.Media.getOMDBDetails(response.data[0].title)
-            .then((omdbResponse) => {
+        API.Media.getOMDBDetails(response.data[0].title)
+          .then((omdbResponse) => {
             console.log(omdbResponse);
-            setOMDBDetails(omdbResponse.data.data)
-        })
-        .catch((error) => {
+            setOMDBDetails(omdbResponse.data);
+          })
+          .catch((error) => {
             console.log(error);
           });
+
+        API.Reviews.getReview(window.location.pathname.substr(9)).then(
+          function (res) {
+            setUserReviews(res.data);
+          }
+        );
       })
       .catch((err) => {
         if (err) throw err;
@@ -87,19 +110,29 @@ export default function Details() {
                 {media.overview}
               </p>
             </div>
+            <h5>Details</h5>
+            <hr></hr>
             <MDBRow>
-            <MDBCol>
-            <p>
-              <h5>Release Date</h5>
-              <p>{media.releaseDate}</p>
-            </p>
-            </MDBCol>
-            <MDBCol>
-            <p>
-              <h5>Details</h5>
-                {/* {omdbDetails.Actors} */}
-            </p>
-            </MDBCol>
+              <MDBCol>
+                <p>
+                  <p>Actors</p>
+                  <small>{omdbDetails.Actors}</small>
+                </p>
+                <p>
+                  <p>Release Date</p>
+                  <small>{omdbDetails.Released}</small>
+                </p>
+              </MDBCol>
+              <MDBCol>
+                <p>
+                  <p>Director</p>
+                  <small>{omdbDetails.Director}</small>
+                </p>
+                <p>
+                  <p>MPAA Rating</p>
+                  <small>{omdbDetails.Rated}</small>
+                </p>
+              </MDBCol>
             </MDBRow>
             <hr></hr>
             <div className="text-center">
@@ -108,7 +141,11 @@ export default function Details() {
                 {whereToWatch.map((service) => (
                   <a href={service.url} target="blank">
                     <img
-                      src={service.display_name  === "FandangoMoviesIVAUS" ? "http://lexiconlabs.io/wp-content/uploads/2016/02/fandango_logo-768x384.jpg" : service.icon}
+                      src={
+                        service.display_name === "FandangoMoviesIVAUS"
+                          ? "http://lexiconlabs.io/wp-content/uploads/2016/02/fandango_logo-768x384.jpg"
+                          : service.icon
+                      }
                       alt={service.display_name}
                       style={{ margin: "15px", width: "92px" }}
                     />
@@ -127,10 +164,7 @@ export default function Details() {
               />
               <hr></hr>
               <br></br>
-              <RatingModal 
-              title = {media.title}
-              id = {media.id}
-              />
+              <RatingModal title={media.title} id={media.id} />
             </div>
           </MDBCol>
         </MDBRow>
@@ -139,14 +173,34 @@ export default function Details() {
           <hr></hr>
           <p>
             <h2 className="text-left">NY Times Movie Review</h2>
+            <br></br>
             {criticalReview.map((review) => (
-              <p>{review.summary_short}...<a href={review.link.url} target="blank">Read more</a></p>
+              <p className="text-left">
+                <p>{review.headline}</p>
+                <p>by: {review.byline}</p>
+                {review.summary_short}...
+                <a href={review.link.url} target="blank">
+                  Read more
+                </a>
+              </p>
             ))}
           </p>
           <hr></hr>
           <p>
             <h2 className="text-left">User Reviews</h2>
-            {/* <p className="text-left">{media.overview}</p> */}
+            <br></br>
+            {userReviews.map((review) => (
+              <div className="text-left">
+                <strong>{review.userId}</strong> reviewed{" "}
+                <strong>{review.title}</strong> 
+                {/* on{" "}
+                <strong>{review.date}</strong> */}
+                <p className="text-center mt-4">{review.rating} out of 5 stars!</p>
+                <br></br>
+                <p>"{review.review}"</p>
+                <hr></hr>
+              </div>
+            ))}
           </p>
         </div>
       </div>

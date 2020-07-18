@@ -2,15 +2,16 @@ const reviewsController = require("express").Router();
 const db = require("../../models");
 
 reviewsController.post('/', (req, res) => {
-    const { title, movieId, rating, review, userId } = req.body;
+    const { title, movieId, rating, review, userId, date } = req.body;
   
-    db.Reviews.create({ title, movieId, rating, review, userId })
+    db.Reviews.create({ title, movieId, rating, review, userId, date})
       .then(review => res.json(review))
       .catch(err => res.json(err));
 });
 
 reviewsController.get("/:id", (req, res) => {
-    db.Reviews.find({ id: req.params.id })
+  console.log(req.params.id);
+    db.Reviews.find({ movieId: req.params.id })
       .then((results) => {
         res.json(results);
       })

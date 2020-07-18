@@ -13,16 +13,16 @@ import {
 import { Link } from "react-router-dom";
 import "./Reviews.css";
 import API from "../../lib/API";
+import AuthContext from "../../contexts/AuthContext";
 
 
-API.Reviews.post(title, movieId, rating, review, userId)
-.then(function(res){
-  console.log(res);
-}
-
-
+// API.Reviews.get(title, movieId, rating, review, userId)
+// .then(function(res){
+//   console.log(res);
+// }
 
 class TabsDefault extends Component {
+  static contextType = AuthContext;
   state = {
     activeItem: "1",
   };
@@ -35,8 +35,17 @@ class TabsDefault extends Component {
     }
   };
   
+  componentDidMount(){
+// API.Reviews.get(title, movieId, rating, review, userId)
+// .then(function(res){
+//   console.log(res);
+}
+
+  
 
   render() {
+    const { user } = this.context;
+
     return (
       <MDBContainer>
           <h1 className="text-center mt-5">Reviews</h1>
