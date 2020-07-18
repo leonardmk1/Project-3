@@ -91,7 +91,7 @@ export default function Details() {
 
   return (
     <MDBContainer>
-      <div className="m-4">
+      <div className="mt-4">
         <h1 className="title">{media.title}</h1>
         <hr></hr>
         <MDBRow className="mt-4">
@@ -106,13 +106,13 @@ export default function Details() {
           <MDBCol className="text-left ml-2" size="6">
             <div className="card--content">
               <p>
-                <h4>Story Line</h4>
+                <h4 className="text-center">Story Line</h4>
                 {media.overview}
               </p>
             </div>
-            <h5>Details</h5>
+            <h5 className="text-center">Details</h5>
             <hr></hr>
-            <MDBRow>
+            <MDBRow className="text-center">
               <MDBCol>
                 <p>
                   <p>Actors</p>
@@ -137,13 +137,13 @@ export default function Details() {
             <hr></hr>
             <div className="text-center">
               <p>
-                <h5>Streaming On</h5>
+                <h5 className="mt-4">Streaming On</h5>
                 {whereToWatch.map((service) => (
                   <a href={service.url} target="blank">
                     <img
                       src={
                         service.display_name === "FandangoMoviesIVAUS"
-                          ? "http://lexiconlabs.io/wp-content/uploads/2016/02/fandango_logo-768x384.jpg"
+                          ? "https://images.squarespace-cdn.com/content/v1/50710c28c4aa65eb3b63d154/1437641130549-VHT5SA623JNOF8MVBYHW/ke17ZwdGBToddI8pDm48kE_3_CdZkl8eY4Tr786I7c1Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIEdLjb7ct2nb1ydMk7ES0zIzkluNQ_lSuJMCmL_llLUA/fandango-logo.png?format=300w"
                           : service.icon
                       }
                       alt={service.display_name}
@@ -168,14 +168,12 @@ export default function Details() {
             </div>
           </MDBCol>
         </MDBRow>
-        <br></br>
         <div>
           <hr></hr>
           <p>
-            <h2 className="text-left">NY Times Movie Review</h2>
-            <br></br>
+            <h2 className="text-center mt-4">NY Times Movie Review</h2>
             {criticalReview.map((review) => (
-              <p className="text-left">
+              <p className="text-center mt-4">
                 <p>{review.headline}</p>
                 <p>by: {review.byline}</p>
                 {review.summary_short}...
@@ -187,19 +185,25 @@ export default function Details() {
           </p>
           <hr></hr>
           <p>
-            <h2 className="text-left">User Reviews</h2>
+            <h2 className="text-center mt-4">User Reviews</h2>
             <br></br>
             {userReviews.map((review) => (
-              <div className="text-left">
-                <strong>{review.userId}</strong> reviewed{" "}
-                <strong>{review.title}</strong> 
-                {/* on{" "}
-                <strong>{review.date}</strong> */}
-                <p className="text-center mt-4">{review.rating} out of 5 stars!</p>
-                <br></br>
-                <p>"{review.review}"</p>
-                <hr></hr>
-              </div>
+                <MDBCard className="mt-4">
+                  <MDBCardBody>
+                    <MDBCardHeader className="bg-white">
+                      <MDBRow>
+                        <MDBCol size="3"><strong>{review.userId}</strong> says...</MDBCol>
+                        <MDBCol size="6" className="text-center"><h5>{review.title}</h5></MDBCol>
+                        <MDBCol size="2" className="text-right">
+                          {review.rating} out of 5 stars!
+                        </MDBCol>
+                      </MDBRow>
+                    </MDBCardHeader>
+                    <MDBCardText>
+                      <p className="mt-2">"{review.review}"</p>
+                    </MDBCardText>
+                  </MDBCardBody>
+                </MDBCard>
             ))}
           </p>
         </div>
