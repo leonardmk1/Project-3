@@ -18,13 +18,21 @@ const UserSchema = new Schema({
       'Password should be four characters or longer'
     ]
   },
+  profilePic: {
+    type: STRING,
+  },
+  userName: {
+    type: STRING,
+  },
 })
 
 class newUser {
-  constructor({ id, email, password }) {
+  constructor({ id, email, password, profilePic, userName }) {
     this.id = id;
     this.email = email;
     this.password = password;
+    // this.profilePic = profilePic;
+    // this.userName = userName;
   }
 
   comparePassword(challenge) {

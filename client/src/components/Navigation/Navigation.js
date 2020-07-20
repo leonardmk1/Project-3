@@ -37,17 +37,6 @@ class Navigation extends Component {
           <Link className="navbar-brand" to="/">
             <h1>Movie Stream</h1>
           </Link>
-          <button
-            className={togglerClass}
-            onClick={this.toggleCollapse}
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
         </MDBNavbarBrand>
 
         <MDBNavbarToggler onClick={this.toggleCollapse} />
@@ -83,17 +72,16 @@ class Navigation extends Component {
                     Reviews
                   </Link>
                 </li>
-                {/* {user && (
-                  <li className="nav-item">
-                    <Link
-                      className="nav-link"
-                      to="/secret"
-                      onClick={this.toggleCollapse}
-                    >
-                      Secret
-                    </Link>
-                  </li>
-                )} */}
+                <li className="nav-item">
+                  <Link
+                    className="nav-link"
+                    to="/Profile"
+                    onClick={this.toggleCollapse}
+                  >
+                    Profile
+                  </Link>
+                </li>
+         
               </ul>
             </div>
           </MDBNavbarNav>

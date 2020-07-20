@@ -21,6 +21,7 @@ reviewsController.get("/:id", (req, res) => {
   });
 
 
+
   reviewsController.put("/:id", (req, res) => {
     db.Reviews.findOneAndUpdate({ _id: req.params.id }, req.body)
     .then((results) => {
@@ -42,6 +43,16 @@ reviewsController.get("/:id", (req, res) => {
     });
   })
 
-
+  reviewsController.get("/user/:id", (req, res) => {
+    console.log(req.params.id);
+      db.Reviews.find({ userId: req.params.id })
+        .then((results) => {
+          res.json(results);
+        })
+        .catch((error) => {
+          if (error) throw error;
+        });
+    });
+  
 
   module.exports = reviewsController;

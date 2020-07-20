@@ -49,7 +49,6 @@ class AuthDropdown extends Component {
                 {user.email}
               </MDBDropdownToggle>
               <MDBDropdownMenu className="dropdown-default">
-                <MDBDropdownItem to="/Profile">Profile</MDBDropdownItem>
                 <MDBDropdownItem onClick={this.handleLogout}>
                   Logout
                 </MDBDropdownItem>

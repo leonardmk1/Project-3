@@ -83,8 +83,9 @@ export default {
       });
     },
 
-    getAll: function () {
-      return axios.get("/api/reviews");
+    getUsersReviews: function (id) {
+      console.log(id)
+      return axios.get("/api/reviews/user/" + id);
     },
 
     getReview: function (id) {
@@ -101,16 +102,6 @@ export default {
 
     updateReview: function (id) {
       return axios.put("/api/reviews/" + id);
-    },
-  },
-
-  Secrets: {
-    getAll: function (authToken) {
-      return axios.get("/api/secrets", {
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      });
     },
   },
 };
