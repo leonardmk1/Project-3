@@ -7,4 +7,4 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/MovieApp', {
     useFindAndModify: true,
 });
 
-module.exports = mongoose.connection;
+module.exports = mongoose.connection
