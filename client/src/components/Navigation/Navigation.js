@@ -62,16 +62,6 @@ class Navigation extends Component {
                     Top Rated TV Shows
                   </Link>
                 </li>
-              
-                <li className="nav-item">
-                  <Link
-                    className="nav-link"
-                    to="/Reviews"
-                    onClick={this.toggleCollapse}
-                  >
-                    Reviews
-                  </Link>
-                </li>
                 <li className="nav-item">
                   <Link
                     className="nav-link"

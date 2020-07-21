@@ -12,8 +12,9 @@ const MediaSchema = new Schema({
     type: Number,
     unique: true,
   },
-  ratings: [{}],
-
+  ratings: {
+    type: Number,
+  },
   releaseDate: {
     type: String,
   },

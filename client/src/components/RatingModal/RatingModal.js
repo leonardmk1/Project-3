@@ -22,6 +22,9 @@ class RatingModal extends Component {
       rating: null,
       review: " ",
     };
+
+    
+
   }
   toggle = () => {
     this.setState({ modal: !this.state.modal });
@@ -36,7 +39,9 @@ class RatingModal extends Component {
       res
     ) {
       console.log(res);
-    });
+    })
+    .catch((err) => console.log(err));
+
   };
 
   render() {

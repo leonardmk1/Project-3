@@ -17,6 +17,12 @@ export default {
         },
       });
     },
+
+    update: function (username, profilePic, id){
+      return axios.post("/api/users/" + id, {username, profilePic})
+    }
+
+
   },
 
   Media: {

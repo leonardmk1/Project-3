@@ -11,6 +11,7 @@ import {
 } from "mdbreact";
 import API from "../../lib/API";
 import RatingModal from "../../components/RatingModal/RatingModal";
+import { FaStar } from "react-icons/fa";
 
 export default function Details() {
   const [media, setMedia] = useState({});
@@ -18,6 +19,7 @@ export default function Details() {
   const [criticalReview, setCriticalReview] = useState([]);
   const [omdbDetails, setOMDBDetails] = useState({});
   const [userReviews, setUserReviews] = useState([]);
+
   // console.log(window.location.pathname.substr(9));
   async function getTheMovie() {
     const res = await API.Media.getMovie(window.location.pathname.substr(9))
@@ -70,24 +72,7 @@ export default function Details() {
     getTheMovie();
   }, []);
 
-  const [basic] = useState([
-    {
-      tooltip: "Very Bad",
-    },
-    {
-      tooltip: "Poor",
-    },
-    {
-      tooltip: "Ok",
-      choosed: true,
-    },
-    {
-      tooltip: "Good",
-    },
-    {
-      tooltip: "Excellent",
-    },
-  ]);
+  
 
   return (
     <MDBContainer>
@@ -158,10 +143,14 @@ export default function Details() {
             <div>
               <h5>Movie Stream Rating</h5>
               <hr></hr>
-              <MDBRating
-                data={basic}
-                style={{ marginLeft: "16px", marginTop: "5px" }}
-              />
+              {[...Array(media.ratings)].map((e, i) => (
+                       <FaStar
+                        icon="star"
+                        className="star"
+                        size={20}
+                        key={i}
+                      /> 
+                    ))}
               <hr></hr>
               <br></br>
               <RatingModal title={media.title} id={media.id} />
@@ -186,24 +175,47 @@ export default function Details() {
           <hr></hr>
           <p>
             <h2 className="text-center mt-4">User Reviews</h2>
-            <br></br>
             {userReviews.map((review) => (
-                <MDBCard className="mt-4">
-                  <MDBCardBody>
-                    <MDBCardHeader className="bg-white">
-                      <MDBRow>
-                        <MDBCol size="3"><strong>{review.userId}</strong> says...</MDBCol>
-                        <MDBCol size="6" className="text-center"><h5>{review.title}</h5></MDBCol>
-                        <MDBCol size="2" className="text-right">
-                          {review.rating} out of 5 stars!
-                        </MDBCol>
-                      </MDBRow>
-                    </MDBCardHeader>
-                    <MDBCardText>
-                      <p className="mt-2">"{review.review}"</p>
-                    </MDBCardText>
-                  </MDBCardBody>
-                </MDBCard>
+              <div className="my-4">
+                <MDBCardHeader>
+                  <MDBRow>
+                    <MDBCol className="text-left mr-5 blue-text">
+                      <stong>{review.userId}</stong>
+                    </MDBCol>
+                    <MDBCol className="text-right ml-5 yellow-text">
+                    {[...Array(review.rating)].map((e, i) => (
+                       <FaStar
+                        icon="star"
+                        className="star"
+                        size={20}
+                        key={i}
+                      /> 
+                    ))}
+                    </MDBCol>
+                  </MDBRow>
+                </MDBCardHeader>
+                <MDBCardText>
+                  <MDBRow>
+                    <MDBCol size="2">
+                      <img
+                        src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                        className="img-fluid shadow-lg mt-4"
+                        style={{
+                          width: "100px",
+                          height: "100px",
+                          zIndex: "4",
+                          borderRadius: "50px",
+                          marginLeft: "auto",
+                          marginRight: "auto",
+                        }}
+                      />
+                    </MDBCol>
+                    <MDBCol size="10">
+                      <div className="text-left mt-4">{review.review}</div>
+                    </MDBCol>
+                  </MDBRow>
+                </MDBCardText>
+              </div>
             ))}
           </p>
         </div>

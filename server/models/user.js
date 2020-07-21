@@ -19,10 +19,10 @@ const UserSchema = new Schema({
     ]
   },
   profilePic: {
-    type: STRING,
+    type: String,
   },
-  userName: {
-    type: STRING,
+  username: {
+    type: String,
   },
 })
 

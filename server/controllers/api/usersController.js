@@ -32,4 +32,11 @@ usersController.post('/login', (req, res) => {
     });
 });
 
+usersController.post("/:id", (req, res) => {
+  console.log(req.params.id, req.body)
+  db.Users.findOneAndUpdate({_id : req.params.id}, req.body)
+  .then(user => res.json(user))
+  .catch(err => res.json(err));
+})
+
 module.exports = usersController;

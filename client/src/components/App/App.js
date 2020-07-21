@@ -12,7 +12,6 @@ import Register from "../../pages/Register/Register";
 import NotFound from "../../pages/NotFound/NotFound";
 import Details from "../../pages/Details/Details";
 import Rating from "../Rating/Rating";
-import Reviews from "../../pages/Reviews/Reviews";
 import Profile from "../../pages/Profile/Profile";
 import TopRatedMovies from "../../pages/TopRatedMovies /TopRatedMovies";
 import TopRatedTVShows from "../../pages/TopRatedTVShows/TopRatedTVShows";
@@ -74,7 +73,6 @@ class App extends Component {
               <PrivateRoute exact path="/Profile" component={Profile} />
               <PrivateRoute path="/Details" component={Details} />
               <PrivateRoute path="/Rating" component={Rating} />
-              <PrivateRoute exact path="/Reviews" component={Reviews} />
               <PrivateRoute exact path="/TopRatedMovies" component={TopRatedMovies} />
               <PrivateRoute
                 exact
