@@ -12,6 +12,7 @@ const logger = require("morgan");
 const db = require("./config/connection");
 
 const { passport } = require("./lib/passport");
+const mongoose = require("mongoose");
 
 //-- Constants ---------------------------------------------------------------
 const PORT = process.env.PORT || 3001;
@@ -44,7 +45,8 @@ app.use(require("./controllers"));
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
-
+// Connect to Mongo DB
+mongoose.connect(process.env.MONGODB_URI || "mongodb://user:password1@ds125881.mlab.com:25881/heroku_47h6z3bb")
 //-- Main --------------------------------------------------------------------
 
 app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));
