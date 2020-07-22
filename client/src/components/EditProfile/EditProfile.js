@@ -93,6 +93,7 @@ class ModalPage extends Component {
               color="primary"
               onClick={() => {
                 this.saveChanges();
+                window.location.reload()
               }}
             >
               Save changes
