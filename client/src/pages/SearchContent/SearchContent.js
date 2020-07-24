@@ -27,13 +27,15 @@ export default function SearchContent() {
   };
 
   const storeContentInDatabase = (title, name, picture, releaseDate, firstAirDate, overview, id) => {
+    let mediaType = "movie"
     if(!title){
       title = name
       releaseDate = firstAirDate
-    }
+      mediaType = "show"
+    } 
     setRedirectToId(id);
-    
-    API.Media.create(title, picture, id, releaseDate, overview)
+    console.log("serch content media type", mediaType)
+    API.Media.create(title, picture, id, releaseDate, overview, mediaType)
       .then(function(res){
         console.log(res);
         setRedirect(true)
@@ -64,7 +66,7 @@ export default function SearchContent() {
       </form>
       <div>
         {content.map((content) => (
-          <>
+         
             <div
               className="card shadow-lg result-card w-75 mx-auto mt-3"
               key={content.id}
@@ -93,7 +95,7 @@ export default function SearchContent() {
                 </MDBCol>
               </MDBRow>
             </div>
-          </>
+         
         ))}
       </div>
       {redirect && <Redirect to={`/Details/${redirectToId}`}/>}

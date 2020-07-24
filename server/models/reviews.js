@@ -18,6 +18,13 @@ const ReviewsSchema = new Schema({
     type: String,
   },
   date: { type: Date},
+  profilePic: {
+    type: String,
+  },
+  username: {
+    type: String,
+  },
+
 });
 
 let Reviews = mongoose.model("Reviews", ReviewsSchema);

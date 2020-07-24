@@ -7,9 +7,9 @@ import {
   MDBModalHeader,
   MDBModalFooter,
 } from "mdbreact";
-import axios from "axios";
 import API from "../../lib/API";
 import AuthContext from "../../contexts/AuthContext";
+import { Redirect } from "react-router-dom";
 
 class ModalPage extends Component {
   static contextType = AuthContext;
@@ -19,10 +19,13 @@ class ModalPage extends Component {
     this.state = {
       modal: false,
       username: "",
-      profilePic: " ",
+      profilePic: "",
+      redirect: false
     };
     this.handleUsernameChange = this.handleUsernameChange.bind(this)
     this.handlePhotoChange = this.handlePhotoChange.bind(this)
+    this.saveChanges = this.saveChanges.bind(this)
+
   }
 
   toggle = () => {
@@ -50,8 +53,10 @@ class ModalPage extends Component {
       this.state.username,
       this.state.profilePic,
       this.props.id
-    ).then(function (res) {
+    ).then((res) => {
       console.log(res);
+      this.setState({redirect: true})
+
     });
   };
 
@@ -93,13 +98,13 @@ class ModalPage extends Component {
               color="primary"
               onClick={() => {
                 this.saveChanges();
-                window.location.reload()
               }}
             >
               Save changes
             </MDBBtn>
           </MDBModalFooter>
         </MDBModal>
+        {this.state.redirect ? <Redirect to="/login"></Redirect>: ""}
       </MDBContainer>
     );
   }

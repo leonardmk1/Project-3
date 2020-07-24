@@ -1,25 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   MDBContainer,
-  // MDBListGroup,
-  // MDBListGroupItem,
-  // MDBRow,
-  // MDBCol,
   MDBJumbotron,
   MDBTable,
   MDBTableBody,
   MDBTableHead,
 } from "mdbreact";
 import API from "../../lib/API";
+import { FaStar } from "react-icons/fa";
 
-API.Media.getAllOfType("show").then((response) => console.log(response));
+export default function TopRatedMovies() {
+  const [movie, setMovie] = useState([]);
 
-export default function TopRatedTVShows() {
+  API.Media.getAllOfType("movie")
+  .then((movieResponse) => console.log(movieResponse));
+  // setMovie((movieResponse.data[0]));
+  
+  
+
+
   return (
     <div>
       <MDBContainer className="mt-5">
         <MDBJumbotron className="shadow-lg">
-          <h1 className="text-center">Top Rated TV Shows</h1>
+          <h1 className="text-center">Top Rated Movies</h1>
           <MDBTable hover>
             <MDBTableHead>
               <tr>
@@ -30,9 +34,9 @@ export default function TopRatedTVShows() {
               </tr>
             </MDBTableHead>
             <MDBTableBody>
-            <tr>
+              <tr>
                 <td>1</td>
-                <td>{}</td>
+                <td>{movie.title}</td>
                 <td>
                   {/* {[...Array(movie.rating)].map((e, i) => (
                     <FaStar

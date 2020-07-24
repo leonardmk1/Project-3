@@ -34,8 +34,8 @@ class RatingModal extends Component {
     this.setState({rating:rating})
   }
 
-  handleSubmit = (title, movieId, rating, review, userId) => {
-    API.Reviews.create(title, movieId, rating, review, userId).then(function (
+  handleSubmit = (title, movieId, rating, review, username, profilePic, userId) => {
+    API.Reviews.create(title, movieId, rating, review, username, profilePic, userId).then(function (
       res
     ) {
       console.log(res);
@@ -46,8 +46,9 @@ class RatingModal extends Component {
 
   render() {
     const { user } = this.context;
-
+console.log(user)
     return (
+      
       <MDBContainer>
         <MDBBtn outline color="primary" onClick={this.toggle}>
           Add Your Review
@@ -69,7 +70,7 @@ class RatingModal extends Component {
               outline
               color="primary"
               onClick={() => {
-                this.handleSubmit(this.props.title, this.props.id, this.state.rating, this.state.review, user._id);
+                this.handleSubmit(this.props.title, this.props.id, this.state.rating, this.state.review, user.username, user.profilePic, user._id);
                 window.location.reload();
               }}
             >

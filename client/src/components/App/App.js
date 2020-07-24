@@ -13,7 +13,7 @@ import NotFound from "../../pages/NotFound/NotFound";
 import Details from "../../pages/Details/Details";
 import Rating from "../Rating/Rating";
 import Profile from "../../pages/Profile/Profile";
-import TopRatedMovies from "../../pages/TopRatedMovies /TopRatedMovies";
+import TopRatedMovies from "../../pages/TopRatedMovies/TopRatedMovies";
 import TopRatedTVShows from "../../pages/TopRatedTVShows/TopRatedTVShows";
 import FooterPage from "../Footer/Footer";
 import "./App.css";
@@ -73,7 +73,11 @@ class App extends Component {
               <PrivateRoute exact path="/Profile" component={Profile} />
               <PrivateRoute path="/Details" component={Details} />
               <PrivateRoute path="/Rating" component={Rating} />
-              <PrivateRoute exact path="/TopRatedMovies" component={TopRatedMovies} />
+              <PrivateRoute
+                exact
+                path="/TopRatedMovies"
+                component={TopRatedMovies}
+              />
               <PrivateRoute
                 exact
                 path="/TopRatedTVShows"

@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import {
-  MDBBtn,
   MDBContainer,
   MDBJumbotron,
   MDBCard,
-  MDBCardBody,
   MDBCardHeader,
   MDBRow,
   MDBCardText,
-  MDBCardTitle,
   MDBCol,
 } from "mdbreact";
 import AuthContext from "../../contexts/AuthContext";
@@ -44,6 +41,7 @@ class Profile extends Component {
           <img
             src={this.state.user.profilePic || "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"}
             className="img-fluid shadow-lg"
+            alt="profile"
             style={{
               width: "300px",
               height: "300px",
@@ -52,20 +50,17 @@ class Profile extends Component {
               marginRight: "auto",
             }}
           />
-          <p>
+          <div>
             {" "}
           <h2 className="text-center mt-5">{this.state.user.username}</h2>
-          </p>
-          <p>
-            Some quick example text to build on the card title and make up the
-            bulk of the card&apos;s content.
-          </p>
+          </div>
+
           <EditProfile id={this.state.user._id} />
           <hr className="m-5"></hr>
-          <p>
+          <div>
             <h2 className="text-center mt-5">Reviews</h2>
             {this.state.userReviews.map((review) => (
-              <MDBCard className="my-4 shadow-lg">
+              <MDBCard className="my-4 shadow-lg" key={review._id}>
                 <MDBCardHeader className="header text-white">
                   <MDBRow>
                     <MDBCol size="3" className="text-left">
@@ -93,16 +88,14 @@ class Profile extends Component {
                     </MDBCol>
                   </MDBRow>
                 </MDBCardHeader>
-                <MDBCardText>
                   <MDBRow>
                     <MDBCol>
                       <h5 className="text-left m-5">{review.review}</h5>
                     </MDBCol>
                   </MDBRow>
-                </MDBCardText>
               </MDBCard>
             ))}
-          </p>
+          </div>
         </MDBJumbotron>
       </MDBContainer>
     );

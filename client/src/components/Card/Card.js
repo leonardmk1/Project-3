@@ -2,39 +2,35 @@ import React from "react";
 import {
   MDBCard,
   MDBCardTitle,
-  // MDBBtn,
-  // MDBCardGroup,
-  // MDBCardImage,
-  MDBCardText,
   MDBCardBody,
-  // MDBListGroup,
   MDBListGroupItem,
-  // MDBContainer,
   MDBCol,
   MDBBadge,
   MDBRow,
   MDBIcon,
+  MDBContainer,
 } from "mdbreact";
 
 const CardExample = () => {
   return (
+    <MDBContainer size="md" className="my-4">
     <MDBRow>
       <MDBCol>
-        <MDBCard  className="shadow-md" style={{ width: "21rem", marginTop: "25px" }}>
+        <MDBCard className="shadow-box-example hoverable"  style={{ width: "20rem", }}>
           <MDBCardBody>
             <MDBCardTitle className="text-center">
               Top Rated Movies
             </MDBCardTitle>
-            <MDBListGroupItem href="#" hover>
+            <MDBListGroupItem href="#" hover className="text-left">
               Dapibus ac facilisis in
               <MDBBadge className="ml-5" color="primary" pill>
                 10
               </MDBBadge>
             </MDBListGroupItem>
-            <MDBListGroupItem href="#" hover>
+            <MDBListGroupItem className="text-left" href="#" hover>
               Morbi leo risus
             </MDBListGroupItem>
-            <MDBListGroupItem href="#" hover>
+            <MDBListGroupItem className="text-left" href="#" hover>
               Porta ac consectetur ac
             </MDBListGroupItem>
           </MDBCardBody>
@@ -42,53 +38,50 @@ const CardExample = () => {
       </MDBCol>
 
       <MDBCol>
-        <MDBCard className="shadow-md" style={{ width: "21rem", marginTop: "25px" }}>
+        <MDBCard  className="shadow-box-example hoverable" style={{ width: "20rem", }}>
           <MDBCardBody>
             <MDBCardTitle className="text-center">
-              Top Rated TV Shows
+              Top Rated Movies
             </MDBCardTitle>
-            <MDBListGroupItem className="text-left" href="#" hover>
-              Dapibus ac facilisis in
-              <MDBBadge className="ml-5 badge">
-                <MDBIcon icon="star"></MDBIcon>
-              </MDBBadge>
-            </MDBListGroupItem>
-            <MDBListGroupItem className="text-left" href="#" hover>
-            Morbi leo risus
-              <MDBBadge className="ml-5 badge">
-                <MDBIcon icon="star"></MDBIcon>
-              </MDBBadge>
-            </MDBListGroupItem>
-            <MDBListGroupItem className="text-left" href="#" hover>
-              Dapibus ac facilisis in
-              <MDBBadge className="ml-5 badge">
-                <MDBIcon icon="star"></MDBIcon>
-              </MDBBadge>
-            </MDBListGroupItem>
-          </MDBCardBody>
-        </MDBCard>
-      </MDBCol>
-
-      <MDBCol>
-        <MDBCard className="shadow-md" style={{ width: "21rem", marginTop: "25px" }}>
-          <MDBCardBody>
-            <MDBCardTitle className="text-center">Trending</MDBCardTitle>
-            <MDBListGroupItem href="#" hover>
+            <MDBListGroupItem href="#" hover className="text-left">
               Dapibus ac facilisis in
               <MDBBadge className="ml-5" color="primary" pill>
                 10
               </MDBBadge>
             </MDBListGroupItem>
-            <MDBListGroupItem href="#" hover>
+            <MDBListGroupItem className="text-left" href="#" hover>
               Morbi leo risus
             </MDBListGroupItem>
-            <MDBListGroupItem href="#" hover>
+            <MDBListGroupItem className="text-left" href="#" hover>
               Porta ac consectetur ac
             </MDBListGroupItem>
           </MDBCardBody>
         </MDBCard>
       </MDBCol>
+      <MDBCol>
+        <MDBCard  className="shadow-box-example hoverable" style={{ width: "20rem", }}>
+          <MDBCardBody>
+            <MDBCardTitle className="text-center">
+              Top Rated Movies
+            </MDBCardTitle>
+            <MDBListGroupItem href="#" hover className="text-left">
+              Dapibus ac facilisis in
+              <MDBBadge className="ml-5" color="primary" pill>
+                10
+              </MDBBadge>
+            </MDBListGroupItem>
+            <MDBListGroupItem className="text-left" href="#" hover>
+              Morbi leo risus
+            </MDBListGroupItem>
+            <MDBListGroupItem className="text-left" href="#" hover>
+              Porta ac consectetur ac
+            </MDBListGroupItem>
+          </MDBCardBody>
+        </MDBCard>
+      </MDBCol>
+
     </MDBRow>
+    </MDBContainer>
   );
 };
 

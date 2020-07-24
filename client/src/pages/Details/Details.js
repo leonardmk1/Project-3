@@ -3,11 +3,9 @@ import {
   MDBRow,
   MDBCol,
   MDBContainer,
-  MDBRating,
-  MDBCard,
-  MDBCardBody,
   MDBCardHeader,
   MDBCardText,
+  MDBJumbotron,
 } from "mdbreact";
 import API from "../../lib/API";
 import RatingModal from "../../components/RatingModal/RatingModal";
@@ -76,7 +74,8 @@ export default function Details() {
 
   return (
     <MDBContainer>
-      <div className="mt-4">
+      <MDBJumbotron className="mt-4 shadow-lg">
+      <div>
         <h1 className="title">{media.title}</h1>
         <hr></hr>
         <MDBRow className="mt-4">
@@ -90,41 +89,40 @@ export default function Details() {
           </MDBCol>
           <MDBCol className="text-left ml-2" size="6">
             <div className="card--content">
-              <p>
-                <h4 className="text-center">Story Line</h4>
+                <h4 className="text-center"><strong>Story Line</strong></h4>
                 {media.overview}
-              </p>
             </div>
-            <h5 className="text-center">Details</h5>
+            <h5 className="text-center"><strong>Details</strong></h5>
             <hr></hr>
             <MDBRow className="text-center">
               <MDBCol>
-                <p>
+                <div>
                   <p>Actors</p>
                   <small>{omdbDetails.Actors}</small>
-                </p>
-                <p>
+                </div>
+                <br/>
+                <div>
                   <p>Release Date</p>
                   <small>{omdbDetails.Released}</small>
-                </p>
+                </div>
               </MDBCol>
               <MDBCol>
-                <p>
+                <div>
                   <p>Director</p>
                   <small>{omdbDetails.Director}</small>
-                </p>
-                <p>
+                </div>
+                <br/>
+                <div>
                   <p>MPAA Rating</p>
                   <small>{omdbDetails.Rated}</small>
-                </p>
+                </div>
               </MDBCol>
             </MDBRow>
             <hr></hr>
             <div className="text-center">
-              <p>
-                <h5 className="mt-4">Streaming On</h5>
+                <h5 className="mt-4"><strong>Streaming On</strong></h5>
                 {whereToWatch.map((service) => (
-                  <a href={service.url} target="blank">
+                  <a href={service.url} target="blank" key={service.display_name}>
                     <img
                       src={
                         service.display_name === "FandangoMoviesIVAUS"
@@ -136,19 +134,19 @@ export default function Details() {
                     />
                   </a>
                 ))}
-              </p>
             </div>
           </MDBCol>
           <MDBCol>
             <div>
-              <h5>Movie Stream Rating</h5>
+              <h5><strong>Movie Stream Rating</strong></h5>
               <hr></hr>
-              {[...Array(media.ratings)].map((e, i) => (
+              {[...Array(media.rating)].map((e, i) => (
                        <FaStar
                         icon="star"
                         className="star"
                         size={20}
                         key={i}
+                        color="ffe207"
                       /> 
                     ))}
               <hr></hr>
@@ -159,28 +157,25 @@ export default function Details() {
         </MDBRow>
         <div>
           <hr></hr>
-          <p>
-            <h2 className="text-center mt-4">NY Times Movie Review</h2>
+            <h2 className="text-center mt-4"><strong>NY Times Movie Review</strong></h2>
             {criticalReview.map((review) => (
-              <p className="text-center mt-4">
+              <div className="text-center mt-4" key={review.headline}>
                 <p>{review.headline}</p>
                 <p>by: {review.byline}</p>
                 {review.summary_short}...
                 <a href={review.link.url} target="blank">
                   Read more
                 </a>
-              </p>
+              </div>
             ))}
-          </p>
           <hr></hr>
-          <p>
-            <h2 className="text-center mt-4">User Reviews</h2>
+            <h2 className="text-center mt-4"><strong>User Reviews</strong></h2>
             {userReviews.map((review) => (
-              <div className="my-4">
+              <div className="my-4" key={review._id}>
                 <MDBCardHeader>
                   <MDBRow>
                     <MDBCol className="text-left mr-5 blue-text">
-                      <stong>{review.userId}</stong>
+                      <strong>{review.username || "anonymous"}</strong>
                     </MDBCol>
                     <MDBCol className="text-right ml-5 yellow-text">
                     {[...Array(review.rating)].map((e, i) => (
@@ -194,11 +189,10 @@ export default function Details() {
                     </MDBCol>
                   </MDBRow>
                 </MDBCardHeader>
-                <MDBCardText>
                   <MDBRow>
                     <MDBCol size="2">
                       <img
-                        src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                        src={review.profilePic ||  "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"}
                         className="img-fluid shadow-lg mt-4"
                         style={{
                           width: "100px",
@@ -211,15 +205,14 @@ export default function Details() {
                       />
                     </MDBCol>
                     <MDBCol size="10">
-                      <div className="text-left mt-4">{review.review}</div>
+                      <div className="text-left mt-4">{review.review} </div>
                     </MDBCol>
                   </MDBRow>
-                </MDBCardText>
               </div>
             ))}
-          </p>
         </div>
       </div>
+      </MDBJumbotron>
     </MDBContainer>
   );
 }

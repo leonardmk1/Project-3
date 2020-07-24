@@ -2,9 +2,10 @@ const reviewsController = require("express").Router();
 const db = require("../../models");
 
 reviewsController.post('/', (req, res) => {
-    const { title, movieId, rating, review, userId, date } = req.body;
-  
-    db.Reviews.create({ title, movieId, rating, review, userId, date})
+    const { title, movieId, rating, review, username, profilePic, date, userId } = req.body;
+    // console.log("control userID", userId)
+
+    db.Reviews.create({ title, movieId, rating, review, username, profilePic, date, userId})
       .then(review => res.json(review))
       .catch(err => res.json(err));
 });

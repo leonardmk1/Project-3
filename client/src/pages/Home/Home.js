@@ -8,9 +8,9 @@ class HomePage extends Component {
     return (
       <div className="Home">
         <Card />
-        <MDBJumbotron fluid className="my-3 text-center shadow-md">
+        <MDBJumbotron fluid className="my-3 text-center shadow-box-example hoverable">
           <MDBContainer>
-            <h3 className="display-5 mb-4">
+            <h3 className="display-5 m-4">
               <strong>Movie Stream</strong> allows for you to search{" "}
               <strong>Movies, TV shows, and more!</strong>
             </h3>

@@ -13,7 +13,7 @@ const MediaSchema = new Schema({
     unique: true,
   },
   ratings: {
-    type: Number,
+    type: Array,
   },
   releaseDate: {
     type: String,
@@ -23,6 +23,9 @@ const MediaSchema = new Schema({
   },
   mediaType: {
     type: String,
+  },
+  rating: {
+    type: Number,
   },
 });
 let Media = mongoose.model("Media", MediaSchema);

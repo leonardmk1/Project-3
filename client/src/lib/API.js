@@ -18,26 +18,40 @@ export default {
       });
     },
 
-    update: function (username, profilePic, id){
-      return axios.post("/api/users/" + id, {username, profilePic})
-    }
-
-
+    update: function (username, profilePic, id) {
+      return axios.post("/api/users/" + id, { username, profilePic });
+    },
   },
 
   Media: {
-    create: function (title, picture, id, releaseDate, overview) {
+    create: function (
+      title,
+      picture,
+      id,
+      releaseDate,
+      overview,
+      mediaType,
+      rating
+    ) {
+      // console.log("api media type", mediaType);
+
       return axios.post("/api/media", {
         title,
         picture,
         id,
         releaseDate,
         overview,
+        mediaType,
+        rating,
       });
     },
 
     getMovie: function (id) {
       return axios.get("/api/media/" + id);
+    },
+
+    getAllOfType: function (type) {
+      return axios.get("/api/media/all/" + type);
     },
 
     getUttey: function (title) {
@@ -79,18 +93,36 @@ export default {
   },
 
   Reviews: {
-    create: function (title, movieId, rating, review, userId) {
-      return axios.post("/api/reviews", {
-        title,
-        movieId,
-        rating,
-        review,
-        userId,
-      });
+    create: function (
+      title,
+      movieId,
+      rating,
+      review,
+      username,
+      profilePic,
+      userId
+    ) {
+      console.log("api userID", userId);
+      const axiosRequests = [
+        axios.post("/api/reviews", {
+          title,
+          movieId,
+          rating,
+          review,
+          username,
+          profilePic,
+          userId,
+        }),
+        axios.post("/api/media/addRating", {
+          rating,
+          movieId,
+        }),
+      ];
+      return axios.all(axiosRequests);
     },
 
     getUsersReviews: function (id) {
-      console.log(id)
+      // console.log(id);
       return axios.get("/api/reviews/user/" + id);
     },
 
