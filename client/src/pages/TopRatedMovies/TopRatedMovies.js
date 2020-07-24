@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   MDBContainer,
   MDBJumbotron,
@@ -8,15 +8,25 @@ import {
 } from "mdbreact";
 import API from "../../lib/API";
 import { FaStar } from "react-icons/fa";
-
+import {Link} from "react-router-dom"
 export default function TopRatedMovies() {
-  const [movie, setMovie] = useState([]);
+  const [movies, setMovies] = useState([]);
 
-  API.Media.getAllOfType("movie")
-  .then((movieResponse) => console.log(movieResponse));
-  // setMovie((movieResponse.data[0]));
+
+  const getTopRatedMovies = () => {
+    API.Media.getAllOfType("movie").then((movieResponse) =>
+    {
+      let numberOfTopReviews = 10
+      if(movieResponse.data.length < 10) numberOfTopReviews = movieResponse.data.length
+      setMovies(movieResponse.data.splice(0, numberOfTopReviews))
+      console.log(movies)
+    }
+  );
+  }
   
-  
+useEffect(()=>{
+  getTopRatedMovies();
+},[])
 
 
   return (
@@ -30,15 +40,18 @@ export default function TopRatedMovies() {
                 <th>#</th>
                 <th>Title</th>
                 <th>All User Rating</th>
-                <th>My Rating</th>
               </tr>
             </MDBTableHead>
             <MDBTableBody>
-              <tr>
-                <td>1</td>
-                <td>{movie.title}</td>
+              {movies.map((movie, i)=> {
+                const movieRating = Math.floor(movie.rating)
+                console.log(movieRating)
+                return ( 
+                <tr>
+                <td>{i + 1}</td>
+                <td><Link to={`/details/${movie.id}`}>{movie.title}</Link></td>
                 <td>
-                  {/* {[...Array(movie.rating)].map((e, i) => (
+                  {[...Array(movieRating)].map((e, i) => (
                     <FaStar
                       icon="star"
                       className="star"
@@ -46,22 +59,13 @@ export default function TopRatedMovies() {
                       key={i}
                       color="ffe207"
                     />
-                  ))} */}
+                  ))}
                 </td>
-                <td></td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+                )
+              })
+            }
+             
             </MDBTableBody>
           </MDBTable>
         </MDBJumbotron>

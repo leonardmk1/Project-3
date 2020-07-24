@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {
   MDBContainer,
   // MDBListGroup,
@@ -11,10 +11,30 @@ import {
   MDBTableHead,
 } from "mdbreact";
 import API from "../../lib/API";
+import { FaStar } from "react-icons/fa";
+import {Link} from "react-router-dom"
 
 API.Media.getAllOfType("show").then((response) => console.log(response));
 
 export default function TopRatedTVShows() {
+  const [show, setShow] = useState([]);
+
+
+  const getTopRatedTVShows = () => {
+    API.Media.getAllOfType("show").then((showResponse) => {
+      let numberOfTopReviews = 10;
+      if (showResponse.data.length < 10)
+        numberOfTopReviews = showResponse.data.length;
+      setShow(showResponse.data.splice(0, numberOfTopReviews));
+      console.log(showResponse)
+    });
+  };
+  
+useEffect(()=>{
+  getTopRatedTVShows();
+},[])
+
+
   return (
     <div>
       <MDBContainer className="mt-5">
@@ -26,15 +46,18 @@ export default function TopRatedTVShows() {
                 <th>#</th>
                 <th>Title</th>
                 <th>All User Rating</th>
-                <th>My Rating</th>
               </tr>
             </MDBTableHead>
             <MDBTableBody>
-            <tr>
-                <td>1</td>
-                <td>{}</td>
+            {show.map((show, i)=> {
+                const showRating = Math.floor(show.rating)
+                console.log(showRating)
+                return ( 
+                <tr>
+                <td>{i + 1}</td>
+                <td><Link to={`/details/${show.id}`}>{show.title}</Link></td>
                 <td>
-                  {/* {[...Array(movie.rating)].map((e, i) => (
+                  {[...Array(showRating)].map((e, i) => (
                     <FaStar
                       icon="star"
                       className="star"
@@ -42,22 +65,12 @@ export default function TopRatedTVShows() {
                       key={i}
                       color="ffe207"
                     />
-                  ))} */}
+                  ))}
                 </td>
-                <td></td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+                )
+              })
+            }
             </MDBTableBody>
           </MDBTable>
         </MDBJumbotron>

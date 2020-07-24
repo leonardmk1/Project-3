@@ -46,6 +46,10 @@ export default {
       });
     },
 
+    getAll: function () {
+      return axios.get("/api/media/trending/all")
+    },
+
     getMovie: function (id) {
       return axios.get("/api/media/" + id);
     },
@@ -53,6 +57,9 @@ export default {
     getAllOfType: function (type) {
       return axios.get("/api/media/all/" + type);
     },
+
+
+
 
     getUttey: function (title) {
       console.log(title);

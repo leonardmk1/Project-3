@@ -41,12 +41,23 @@ mediaController.get("/:id", (req, res) => {
 });
 
 mediaController.get("/all/:type", (req, res) => {
-  db.Media.find({ mediaType: req.params.type })
+  db.Media.find({ mediaType: req.params.type }).sort({rating: 'descending'})
     .then((results) => res.json(results))
     .catch((error) => {
       if (error) throw error;
     });
 });
+
+
+mediaController.get("/trending/all", (req,res) => {
+  db.Media.find({}).sort({'ratings': -1})
+  .then((results) => res.json(results))
+  .catch((error) => {
+    if (error) throw error;
+  });
+
+})
+
 
 mediaController.post("/addRating", (req, res) => {
   db.Media.find({ id: req.body.movieId })
