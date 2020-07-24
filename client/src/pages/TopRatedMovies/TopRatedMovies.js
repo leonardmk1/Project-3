@@ -32,7 +32,7 @@ useEffect(()=>{
   return (
     <div>
       <MDBContainer className="mt-5">
-        <MDBJumbotron className="shadow-lg">
+        <MDBJumbotron className="shadow-box-example hoverable" style={{borderRadius: "10px"}}>
           <h1 className="text-center">Top Rated Movies</h1>
           <MDBTable hover>
             <MDBTableHead>

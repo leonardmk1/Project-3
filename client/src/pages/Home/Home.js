@@ -3,12 +3,13 @@ import Card from "../../components/Card/Card";
 import SearchContent from "../SearchContent/SearchContent";
 import { MDBJumbotron, MDBContainer } from "mdbreact";
 
+
 class HomePage extends Component {
   render() {
     return (
       <div className="Home">
         <Card />
-        <MDBJumbotron fluid className="my-3 text-center shadow-box-example hoverable">
+        <MDBJumbotron fluid className="my-3 text-center shadow-box-example hoverable" style={{borderRadius: "10px" }}>
           <MDBContainer>
             <h3 className="display-5 m-4">
               <strong>Movie Stream</strong> allows for you to search{" "}

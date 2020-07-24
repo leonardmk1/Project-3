@@ -68,13 +68,13 @@ export default function SearchContent() {
         {content.map((content) => (
          
             <div
-              className="card shadow-lg result-card w-75 mx-auto mt-3"
+              className="card shadow-box-example hoverable result-card w-75 mx-auto mt-3"
               key={content.id}
             >
               <MDBRow>
                 <MDBCol>
                   <img
-                    className="card--image z-depth-3"
+                    className="card--image shadow-box-example hoverable"
                     src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${content.poster_path}`}
                     alt={content.title + " poster"}
                     style={{ width: "250px" }}

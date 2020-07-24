@@ -58,7 +58,7 @@ const CardExample = () => {
         <MDBCol>
           <MDBCard
             className="shadow-box-example hoverable"
-            style={{ width: "20rem" }}
+            style={{ width: "20rem", borderRadius: "10px"  }}
           >
             <MDBCardBody>
               <MDBCardTitle className="text-center">
@@ -80,7 +80,7 @@ const CardExample = () => {
         <MDBCol>
           <MDBCard
             className="shadow-box-example hoverable"
-            style={{ width: "20rem" }}
+            style={{ width: "20rem", borderRadius: "10px" }}
           >
             <MDBCardBody>
               <MDBCardTitle className="text-center">
@@ -101,7 +101,7 @@ const CardExample = () => {
         <MDBCol>
           <MDBCard
             className="shadow-box-example hoverable"
-            style={{ width: "20rem" }}
+            style={{ width: "20rem", borderRadius: "10px"  }}
           >
             <MDBCardBody>
               <MDBCardTitle className="text-center">Trending</MDBCardTitle>

@@ -10,6 +10,7 @@ import {
 import API from "../../lib/API";
 import RatingModal from "../../components/RatingModal/RatingModal";
 import { FaStar } from "react-icons/fa";
+import "./Details.css";
 
 export default function Details() {
   const [media, setMedia] = useState({});
@@ -74,7 +75,7 @@ export default function Details() {
 
   return (
     <MDBContainer>
-      <MDBJumbotron className="mt-4 shadow-lg">
+      <MDBJumbotron className="shadow-box-example hoverable my-4" style={{borderRadius: "10px"}}>
       <div>
         <h1 className="title">{media.title}</h1>
         <hr></hr>
@@ -83,7 +84,7 @@ export default function Details() {
             <img
               style={{ width: "250px", borderRadius: "2%" }}
               alt="poster"
-              className="z-depth-3 mr-5"
+              className="mr-5 shadow-box-example hoverable"
               src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${media.picture}`}
             ></img>
           </MDBCol>
@@ -130,6 +131,7 @@ export default function Details() {
                           : service.icon
                       }
                       alt={service.display_name}
+                      className="shadow-box-example hoverable m-2"
                       style={{ margin: "15px", width: "92px" }}
                     />
                   </a>
@@ -171,10 +173,10 @@ export default function Details() {
           <hr></hr>
             <h2 className="text-center mt-4"><strong>User Reviews</strong></h2>
             {userReviews.map((review) => (
-              <div className="my-4" key={review._id}>
-                <MDBCardHeader>
+              <div className="shadow-box-example hoverable my-4" style={{borderRadius: "10px"}} key={review._id}>
+                <MDBCardHeader className="header">
                   <MDBRow>
-                    <MDBCol className="text-left mr-5 blue-text">
+                    <MDBCol className="text-left mr-5 text-white">
                       <strong>{review.username || "anonymous"}</strong>
                     </MDBCol>
                     <MDBCol className="text-right ml-5 yellow-text">
@@ -193,7 +195,7 @@ export default function Details() {
                     <MDBCol size="2">
                       <img
                         src={review.profilePic ||  "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"}
-                        className="img-fluid shadow-lg mt-4"
+                        className="img-fluid shadow-lg my-4"
                         style={{
                           width: "100px",
                           height: "100px",

@@ -14,7 +14,6 @@ import API from "../../lib/API";
 import { FaStar } from "react-icons/fa";
 import {Link} from "react-router-dom"
 
-API.Media.getAllOfType("show").then((response) => console.log(response));
 
 export default function TopRatedTVShows() {
   const [show, setShow] = useState([]);
@@ -38,12 +37,12 @@ useEffect(()=>{
   return (
     <div>
       <MDBContainer className="mt-5">
-        <MDBJumbotron className="shadow-lg">
+      <MDBJumbotron className="shadow-box-example hoverable" style={{borderRadius: "10px"}}>
           <h1 className="text-center">Top Rated TV Shows</h1>
           <MDBTable hover>
             <MDBTableHead>
               <tr>
-                <th>#</th>
+                <th><strong>#</strong></th>
                 <th>Title</th>
                 <th>All User Rating</th>
               </tr>

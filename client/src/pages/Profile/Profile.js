@@ -36,8 +36,8 @@ class Profile extends Component {
 
   render() {
     return (
-      <MDBContainer>
-        <MDBJumbotron className="mt-5 shadow-lg">
+      <MDBContainer className="mt-4">
+        <MDBJumbotron className="shadow-box-example hoverable" style={{borderRadius: "10px"}}>
           <img
             src={this.state.user.profilePic || "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"}
             className="img-fluid shadow-lg"
@@ -60,8 +60,8 @@ class Profile extends Component {
           <div>
             <h2 className="text-center mt-5">Reviews</h2>
             {this.state.userReviews.map((review) => (
-              <MDBCard className="my-4 shadow-lg" key={review._id}>
-                <MDBCardHeader className="header text-white">
+              <MDBCard className="shadow-box-example hoverable my-4" style={{borderRadius: "10px"}} key={review._id}>
+                <MDBCardHeader className="header text-white" style={{borderRadius: "5px"}}>
                   <MDBRow>
                     <MDBCol size="3" className="text-left">
                       <h5>{review.title}</h5>
