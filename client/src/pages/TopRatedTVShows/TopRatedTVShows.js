@@ -44,7 +44,7 @@ useEffect(()=>{
               <tr>
                 <th><strong>#</strong></th>
                 <th>Title</th>
-                <th>All User Rating</th>
+                <th>All Users Rating</th>
               </tr>
             </MDBTableHead>
             <MDBTableBody>
