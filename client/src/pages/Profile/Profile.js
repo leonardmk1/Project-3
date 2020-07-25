@@ -71,7 +71,7 @@ class Profile extends Component {
                         className="text-white"
                         to={`/Details/${review.movieId}`}
                       >
-                        Movie Details
+                       Details
                       </Link>
                     </MDBCol>
                     <MDBCol size="3" className="text-right yellow-text">
