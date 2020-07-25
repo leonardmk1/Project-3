@@ -41,8 +41,11 @@ const CardExample = () => {
 
   const getTrending = () => {
     API.Media.getAll().then((response) => {
+      let numberOfTrending = 3;
+      if (response.data.length < 3)  
+      numberOfTrending = response.data.length
       console.log(response);
-      setTrending(response);
+      setTrending(response.data.splice(0, numberOfTrending));
     });
   };
 
@@ -55,10 +58,10 @@ const CardExample = () => {
   return (
     <MDBContainer size="md" className="my-4">
       <MDBRow>
-        <MDBCol>
+        <MDBCol md="4" className="mb-2">
           <MDBCard
-            className="shadow-box-example hoverable"
-            style={{ width: "20rem", borderRadius: "10px"  }}
+            className="shadow-box-example hoverable w-100"
+            style={{ borderRadius: "10px"  }}
           >
             <MDBCardBody>
               <MDBCardTitle className="text-center">
@@ -77,10 +80,10 @@ const CardExample = () => {
           </MDBCard>
         </MDBCol>
 
-        <MDBCol>
+        <MDBCol md="4" className="mb-2">
           <MDBCard
-            className="shadow-box-example hoverable"
-            style={{ width: "20rem", borderRadius: "10px" }}
+            className="shadow-box-example hoverable w-100"
+            style={{ borderRadius: "10px" }}
           >
             <MDBCardBody>
               <MDBCardTitle className="text-center">
@@ -98,23 +101,23 @@ const CardExample = () => {
             </MDBCardBody>
           </MDBCard>
         </MDBCol>
-        <MDBCol>
+        <MDBCol md="4"className="mb-2">
           <MDBCard
-            className="shadow-box-example hoverable"
-            style={{ width: "20rem", borderRadius: "10px"  }}
+            className="shadow-box-example hoverable w-100"
+            style={{ borderRadius: "10px"  }}
           >
             <MDBCardBody>
               <MDBCardTitle className="text-center">Trending</MDBCardTitle>
-              {/* {trending.map((trending, i) => {
+              {trending.map((trending, i) => {
                 return (
                   <>
-                    <MDBListGroupItem href="#" hover className="text-left">
+                    <MDBListGroupItem href={`/details/${trending.id}`} hover className="text-left">
                       {trending.title}
                      
                     </MDBListGroupItem>
                   </>
                 );
-              })} */}
+              })}
             </MDBCardBody>
           </MDBCard>
         </MDBCol>

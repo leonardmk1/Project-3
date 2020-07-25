@@ -72,12 +72,12 @@ export default function SearchContent() {
               key={content.id}
             >
               <MDBRow>
-                <MDBCol>
+                <MDBCol >
                   <img
                     className="card--image shadow-box-example hoverable"
                     src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${content.poster_path}`}
                     alt={content.title + " poster"}
-                    style={{ width: "250px" }}
+                    style={{ width: "200px" }}
                   />
                 </MDBCol>
                 <MDBCol>

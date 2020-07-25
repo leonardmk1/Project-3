@@ -14,22 +14,25 @@ import AuthDropdown from "../../components/AuthDropdown/AuthDropdown";
 
 class Navigation extends Component {
   static contextType = AuthContext;
-
-  state = {
-    collapsed: true,
-  };
-
-  toggleCollapse = () => {
+  constructor(props){
+    super(props)
+    this.state = {
+      collapse: false,
+      isWideEnough: false,
+    };
+    this.onClick = this.onClick.bind(this)
+  }
+    onClick = () => {
     this.setState({
-      collapsed: !this.state.collapsed,
+      collapse: !this.state.collapse,
     });
   };
 
   render() {
     const { user } = this.context;
-    const { collapsed } = this.state;
-    const targetClass = `collapse navbar-collapse ${!collapsed && "show"}`;
-    const togglerClass = `navbar-toggler ${collapsed && "collapsed"}`;
+    // const { collapsed } = this.state;
+    // const targetClass = `collapse navbar-collapse ${!collapsed && "show"}`;
+    // const togglerClass = `navbar-toggler ${collapsed && "collapsed"}`;
 
     return (
       <MDBNavbar className="blue-gradient color-block" dark expand="md">
@@ -39,10 +42,10 @@ class Navigation extends Component {
           </Link>
         </MDBNavbarBrand>
 
-        <MDBNavbarToggler onClick={this.toggleCollapse} />
-        <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
+        <MDBNavbarToggler onClick={this.onClick} />
+        <MDBCollapse id="navbarCollapse3" isOpen={this.state.collapse} navbar>
           <MDBNavbarNav left>
-            <div className={targetClass} id="navbarSupportedContent">
+            <div id="navbarSupportedContent">
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
                   <Link
@@ -79,13 +82,13 @@ class Navigation extends Component {
             <MDBNavItem>
               <ul className="navbar-nav">
                 {user ? (
-                  <AuthDropdown onClick={this.toggleCollapse} />
+                  <AuthDropdown onClick={this.onClick} />
                 ) : (
                   <li className="nav-item">
                     <Link
                       className="nav-link"
                       to="/login"
-                      onClick={this.toggleCollapse}
+                      onClick={this.onClick}
                     >
                       Login/Register
                     </Link>

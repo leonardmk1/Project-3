@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 
 import RegistrationForm from '../../components/RegistrationForm/RegistrationForm';
 import API from '../../lib/API';
-
+import { FaLessThanEqual } from 'react-icons/fa';
+import {Redirect} from "react-router-dom";
 class Register extends Component {
   state = {
-    error: ""
+    error: "",
+    redirect: false,
   }
 
   handleSubmit = (email, password, confirm) => {
@@ -15,7 +17,7 @@ class Register extends Component {
 
     API.Users.create(email, password)
       .then(response => response.data)
-      .then(user => console.log(user))
+      .then(user => {this.setState({redirect:true})})
       .catch(err => this.setState({ error: err.message }));
   }
 
@@ -40,6 +42,7 @@ class Register extends Component {
             <RegistrationForm onSubmit={this.handleSubmit} />
           </div>
         </div>
+        {this.state.redirect?<Redirect to="/login"></Redirect> : ""}
       </div>
     );
   }

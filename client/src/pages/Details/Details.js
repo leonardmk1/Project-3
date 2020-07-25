@@ -80,9 +80,9 @@ export default function Details() {
         <h1 className="title">{media.title}</h1>
         <hr></hr>
         <MDBRow className="mt-4">
-          <MDBCol size="3">
+          <MDBCol size="12" md="4" lg="3">
             <img
-              style={{ width: "250px", borderRadius: "2%" }}
+              style={{ width: "200px", borderRadius: "2%" }}
               alt="poster"
               className="mr-5 shadow-box-example hoverable"
               src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${media.picture}`}
