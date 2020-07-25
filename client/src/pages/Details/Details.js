@@ -93,7 +93,7 @@ export default function Details() {
                 <h4 className="text-center"><strong>Story Line</strong></h4>
                 {media.overview}
             </div>
-            <h5 className="text-center"><strong>Details</strong></h5>
+            <h5 className="text-center mt-3"><strong>Details</strong></h5>
             <hr></hr>
             <MDBRow className="text-center">
               <MDBCol>
