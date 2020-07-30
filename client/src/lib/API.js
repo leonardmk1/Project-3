@@ -94,7 +94,7 @@ export default {
       console.log(title);
       return axios({
         method: "GET",
-        url: `http://www.omdbapi.com/?t=${title}&apikey=434727b0`,
+        url: `https://www.omdbapi.com/?t=${title}&apikey=434727b0`,
       });
     },
   },
