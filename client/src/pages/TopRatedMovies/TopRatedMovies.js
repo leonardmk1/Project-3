@@ -46,12 +46,13 @@ useEffect(()=>{
               {movies.map((movie, i)=> {
                 const movieRating = Math.floor(movie.rating)
                 console.log(movieRating)
+              
                 return ( 
                 <tr>
                 <td>{i + 1}</td>
                 <td><Link to={`/details/${movie.id}`}>{movie.title}</Link></td>
                 <td>
-                  {[...Array(movieRating)].map((e, i) => (
+                  {isNaN(movieRating)? "no ratings yet" : [...Array(movieRating)].map((e, i) => (
                     <FaStar
                       icon="star"
                       className="star"

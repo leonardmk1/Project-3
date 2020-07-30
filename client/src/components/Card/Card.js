@@ -58,7 +58,7 @@ const CardExample = () => {
   return (
     <MDBContainer size="md" className="my-4">
       <MDBRow>
-        <MDBCol md="4" className="mb-2">
+        <MDBCol md="4" className="mb-2 px-0">
           <MDBCard
             className="shadow-box-example hoverable w-100"
             style={{ borderRadius: "10px"  }}
@@ -80,7 +80,7 @@ const CardExample = () => {
           </MDBCard>
         </MDBCol>
 
-        <MDBCol md="4" className="mb-2">
+        <MDBCol md="4" className="mb-2 ">
           <MDBCard
             className="shadow-box-example hoverable w-100"
             style={{ borderRadius: "10px" }}
@@ -101,7 +101,7 @@ const CardExample = () => {
             </MDBCardBody>
           </MDBCard>
         </MDBCol>
-        <MDBCol md="4"className="mb-2">
+        <MDBCol md="4"className="mb-2 px-0">
           <MDBCard
             className="shadow-box-example hoverable w-100"
             style={{ borderRadius: "10px"  }}

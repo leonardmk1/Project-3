@@ -56,7 +56,7 @@ useEffect(()=>{
                 <td>{i + 1}</td>
                 <td><Link to={`/details/${show.id}`}>{show.title}</Link></td>
                 <td>
-                  {[...Array(showRating)].map((e, i) => (
+                  {isNaN(showRating)? "no ratings yet" : [...Array(showRating)].map((e, i) => (
                     <FaStar
                       icon="star"
                       className="star"
