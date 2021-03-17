@@ -9,7 +9,7 @@
     "install:server": "cd server && yarn",
     "build": "cd client && yarn build",
     "start": "node server/server.js",
-    "start:dev": "concurrently -n client,server \"yarn run client:dev\" \"yarn run server:dev\"",
+    "mongodb+srv://leonardmk:<password>@cluster0.hg6re.mongodb.net/myFirstDatabase?retryWrites=true&w=majority": "concurrently -n client,server \"yarn run client:dev\" \"yarn run server:dev\"",
     "client:dev": "cd client && yarn start",
     "server:dev": "cd server && yarn start:dev",
     "heroku-postbuild": "yarn build"

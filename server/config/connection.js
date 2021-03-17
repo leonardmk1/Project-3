@@ -1,10 +1,18 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/MovieApp', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: true,
+const uri =
+  "mongodb+srv://leonardmk:password1234@cluster0.hg6re.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: true,
 });
 
-module.exports = mongoose.connection
+const connection = mongoose.connection;
+connection.once("open", () => {
+  console.log("db connected");
+});
+
+module.exports = mongoose.connection;
